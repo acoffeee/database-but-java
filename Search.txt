@@ -1,0 +1,34 @@
+import java.util.function.Consumer;
+public class Search {
+    public static int Binary(int[] arr, int target)
+    {
+        int keyPosition;
+        Consumer<int[]> getMid = (array) -> array.length / 2; //left justified
+        boolean isAbove = false;
+        keyPosition = getMid(arr);
+        while(true) {
+            if(arr.length == 0) return -1;
+            if(target == arr[0]) return keyPosition
+            if(arr[arr.length / 2] >= target){ 
+                isAbove = true;
+                arr = Arrays.stream(arr, arr.length / 2, arr.length).toArray(int[]::new);
+                keyPosition += getMid(arr);
+            }
+            if(!isAbove) {
+                arr = Arrays.stream(arr, 0, arr.length / 2).toArray(int[]::new);
+                keyPosition -= getMid(arr);
+            }
+        }
+    }
+    public static int[] linear(int[] arr, int target)
+    {
+        //returns the lower and higher number, if edge then will return one number
+        if(arr[arr.len - 1] >= target) return Arrays.stream(arr, arr.len - 1, arr.len).toArray(int[]::new);
+        for(int key = 0; key < arr.len - 1; key++) {
+            if( arr[key] <= target && arr[key + 1] >) {
+                int[] keys = {key, key + 1};
+                return keys;
+            }
+        }
+    }
+}
